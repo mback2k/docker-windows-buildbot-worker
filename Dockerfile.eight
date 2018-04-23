@@ -4,6 +4,8 @@ ARG BASE_TAG=py2_1709
 
 FROM mback2k/windows-python:${BASE_TAG}
 
+RUN net user Buildbot /add
+
 SHELL ["cmd.exe", "/s", "/c"]
 
 RUN C:\Program^ Files^ ^(x86^)\Microsoft^ Visual^ Studio\2017\BuildTools\Common7\Tools\VsDevCmd.bat && `
@@ -11,4 +13,10 @@ RUN C:\Program^ Files^ ^(x86^)\Microsoft^ Visual^ Studio\2017\BuildTools\Common7
 
 RUN python -m pip install buildbot-slave==0.8.12
 
-CMD ["powershell"]
+RUN mkdir C:\Buildbot
+WORKDIR C:\Buildbot
+
+VOLUME C:\Buildbot
+USER Buildbot
+
+CMD ["C:\Python\Scripts\twistd.exe", "-noy", "C:\Buildbot\buildbot.tac"]
