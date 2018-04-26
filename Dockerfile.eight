@@ -19,4 +19,4 @@ WORKDIR C:\Buildbot
 VOLUME C:\Buildbot
 USER Buildbot
 
-CMD ["C:\Python\Scripts\twistd.exe", "-noy", "C:\Buildbot\buildbot.tac"]
+CMD ["C:\\Python\\Scripts\\twistd.exe", "-no", "-l", "-", "-y", "C:\\Buildbot\\buildbot.tac"]
