@@ -16,8 +16,7 @@ RUN python -m pip install buildbot-slave==0.8.12
 RUN mkdir C:\Buildbot
 WORKDIR C:\Buildbot
 
-VOLUME C:\Buildbot
 USER Buildbot
-
 ADD buildbot-slave.bat C:\ProgramData\buildbot-slave.bat
+
 CMD ["cmd.exe", "/s", "/c", "C:\\ProgramData\\buildbot-slave.bat"]

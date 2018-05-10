@@ -16,8 +16,7 @@ RUN python -m pip install buildbot-worker
 RUN mkdir C:\Buildbot
 WORKDIR C:\Buildbot
 
-VOLUME C:\Buildbot
 USER Buildbot
-
 ADD buildbot-worker.bat C:\ProgramData\buildbot-worker.bat
+
 CMD ["cmd.exe", "/s", "/c", "C:\\ProgramData\\buildbot-worker.bat"]
