@@ -7,12 +7,12 @@ if not defined WORKERPASS set WORKERPASS=docker
 if exist %BASEDIR%\buildbot.tac goto upgrade
 
 :create
-cmd /c C:\Python\Scripts\buildbot-worker.bat create-worker "%BASEDIR%" "%MASTERHOST%:%MASTERPORT%" "%WORKERNAME%" "%WORKERPASS%"
+cmd /c C:\Python\Scripts\buildbot-worker.exe create-worker "%BASEDIR%" "%MASTERHOST%:%MASTERPORT%" "%WORKERNAME%" "%WORKERPASS%"
 
 goto clean
 
 :upgrade
-cmd /c C:\Python\Scripts\buildbot-worker.bat upgrade-worker "%BASEDIR%"
+cmd /c C:\Python\Scripts\buildbot-worker.exe upgrade-worker "%BASEDIR%"
 
 goto clean
 
