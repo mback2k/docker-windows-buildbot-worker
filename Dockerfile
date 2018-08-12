@@ -1,6 +1,6 @@
 # escape=`
 
-ARG BASE_TAG=py3_1709
+ARG BASE_TAG=py3_1803
 
 FROM mback2k/windows-python:${BASE_TAG}
 
