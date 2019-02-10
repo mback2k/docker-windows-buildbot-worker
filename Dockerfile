@@ -9,6 +9,7 @@ RUN net user Buildbot /add
 SHELL ["cmd.exe", "/s", "/c"]
 
 RUN C:\Program^ Files^ ^(x86^)\Microsoft^ Visual^ Studio\2017\BuildTools\Common7\Tools\VsDevCmd.bat && `
+    python -m pip install https://download.lfd.uci.edu/pythonlibs/r5uhg2lo/Twisted-18.9.0-cp36-cp36m-win_amd64.whl && `
     python -m pip install Twisted[windows_platform]
 
 RUN python -m pip install buildbot-worker
