@@ -17,6 +17,17 @@ RUN python -m pip install buildbot-worker
 RUN mkdir C:\Buildbot
 WORKDIR C:\Buildbot
 
-ADD buildbot-worker.bat C:\ProgramData\buildbot-worker.bat
+SHELL ["powershell", "-command"]
 
-CMD ["cmd.exe", "/s", "/c", "C:\\ProgramData\\buildbot-worker.bat"]
+ENV BASEDIR=C:\Buildbot
+ENV MASTERHOST=master
+ENV MASTERPORT=10000
+ENV WORKERNAME=docker
+ENV WORKERPASS=docker
+
+ADD docker-entrypoint.d\01-buildbot-worker.ps1 C:\ProgramData\docker-entrypoint.d\
+ADD docker-entrypoint.d\02-buildbot-info.ps1 C:\ProgramData\docker-entrypoint.d\
+
+ENV DOCKER_ENV_HIDEVARS MASTERHOST MASTERPORT WORKERNAME WORKERPASS
+
+CMD C:\\Python\\Scripts\\twistd.exe -no -y ${env:BASEDIR}\\buildbot.tac
