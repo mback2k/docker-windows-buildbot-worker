@@ -21,7 +21,8 @@ SHELL ["powershell", "-command"]
 
 ENV BASEDIR=C:\Buildbot MASTERHOST=master MASTERPORT=10000 SLAVENAME=docker SLAVEPASS=docker
 
-ADD docker-entrypoint.d\01-buildbot-slave.ps1 docker-entrypoint.d\02-buildbot-info.ps1 C:\ProgramData\docker-entrypoint.d\
+ADD docker-entrypoint.d\01-buildbot-slave.ps1 C:\ProgramData\docker-entrypoint.d\
+ADD docker-entrypoint.d\02-buildbot-info.ps1 C:\ProgramData\docker-entrypoint.d\
 
 ENV DOCKER_ENV_HIDEVARS MASTERHOST MASTERPORT SLAVENAME SLAVEPASS
 
