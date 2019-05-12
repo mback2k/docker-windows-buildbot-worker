@@ -19,15 +19,10 @@ WORKDIR C:\Buildbot
 
 SHELL ["powershell", "-command"]
 
-ENV BASEDIR=C:\Buildbot
-ENV MASTERHOST=master
-ENV MASTERPORT=10000
-ENV WORKERNAME=docker
-ENV WORKERPASS=docker
+ENV BASEDIR=C:\Buildbot MASTERHOST=master MASTERPORT=10000 WORKERNAME=docker WORKERPASS=docker
 
-ADD docker-entrypoint.d\01-buildbot-worker.ps1 C:\ProgramData\docker-entrypoint.d\
-ADD docker-entrypoint.d\02-buildbot-info.ps1 C:\ProgramData\docker-entrypoint.d\
+ADD docker-entrypoint.d\01-buildbot-worker.ps1 docker-entrypoint.d\02-buildbot-info.ps1 C:\ProgramData\docker-entrypoint.d\
 
 ENV DOCKER_ENV_HIDEVARS MASTERHOST MASTERPORT WORKERNAME WORKERPASS
 
-CMD C:\\Python\\Scripts\\twistd.exe -no -y ${env:BASEDIR}\\buildbot.tac
+CMD C:\\Python\\Scripts\\twistd.exe -noy ${env:BASEDIR}\\buildbot.tac
